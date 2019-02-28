@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+	<style>
+		.block {
+		  	display: block;
+		  	width: 100%;
+		  	border: none;
+		  	background-color: #66cccc;
+		  	color: white;
+		  	padding: 14px 28px;
+		  	font-size: 16px;
+		  	cursor: pointer;
+		  	text-align: center;
+		}
+
+		.block:hover {
+			background-color: #ddd;
+			color: black;
+		}
+
+		.clear {
+		  	display: block;
+		  	width: 100%;
+		  	border: none;
+		  	background-color: #cc3300;
+		  	color: white;
+		  	padding: 14px 28px;
+		  	font-size: 16px;
+		  	cursor: pointer;
+		  	text-align: center;
+		}
+
+		.clear:hover {
+			background-color: #ddd;
+			color: black;
+		}
+
+		.selection {
+		  	display: block;
+		  	width: 100%;
+		  	border: none;
+		  	background-color: #C0C0C0;
+		  	color: white;
+		  	padding: 14px 28px;
+		  	font-size: 16px;
+		  	cursor: pointer;
+		  	text-align: center;
+		}
+
+		.selection:hover {
+			background-color: #ddd;
+			color: black;
+		}
+
+		.answer {
+		  	display: block;
+		  	width: 13%;
+		  	border: none;
+		  	background-color: #C0C0C0;
+		  	color: white;
+		  	padding: 14px 28px;
+		  	font-size: 16px;
+		  	cursor: pointer;
+		  	text-align: center;
+		}
+
+		.answer:hover {
+			background-color: #ddd;
+			color: black;
+		}
+	</style>
+	<head>
+		<meta charset="utf-8" />
+		<title>JS Calc</title>
+	</head>
+		<body bgcolor="white">
+			<form name=”calculator”>
+			<center>
+				<p>Simple JS Calculator</p>
+	         	<table>
+		           	<tr>
+		              	<td><button type="button" class="block" onclick="addNum('1')">1</button></td>
+		              	<td><button type="button" class="block" onclick="addNum('2')">2</button></td>
+		              	<td><button type="button" class="block" onclick="addNum('3')">3</button></td>
+		           	</tr>
+		           	<tr>
+		              	<td><button type="button" class="block" onclick="addNum('4')">4</button></td>
+		              	<td><button type="button" class="block" onclick="addNum('5')">5</button></td>
+		              	<td><button type="button" class="block" onclick="addNum('6')">6</button></td>
+		           	</tr>
+		           	<tr>
+		              	<td><button type="button" class="block" onclick="addNum('7')">7</button></td>
+		              	<td><button type="button" class="block" onclick="addNum('8')">8</button></td>
+		              	<td><button type="button" class="block" onclick="addNum('9')">9</button></td>
+		           	</tr>
+		           	<tr>
+		              	<td><button id="clear" type="button" class="clear" onclick="clearNums()">C</button></td>
+		              	<td><button type="button" class="block" onclick="addNum('0')">0</button></td>
+		              	<td><button type="button" class="clear" onclick="calculate()">=</button></td>
+		           	</tr>
+		           	<tr>
+		              	<td><button type="button" class="clear" onclick="operationUpdate('+')">+</button></td>
+		              	<td><button type="button" class="clear" onclick="operationUpdate('-')">-</button></td>
+		              	<td><button type="button" class="clear" onclick="operationUpdate('*')">*</button></td>
+		           	</tr>
+		           	<tr>
+		              	<td><button id="first" type="button" class="selection" onclick="selectBox('first')"></button></td>
+		              	<td><button id="opButton" type="button" class="selection"></button></td>
+		              	<td><button id="sec"type="button" class="selection" onclick="selectBox('sec')"></button></td>
+		           	</tr>
+	        	</table>
+	        	<button id="answerButton" type="button" class="answer"></button>
+	        </cemter>
+      		</form>
+      	</body>
+		<script>
+			var firstNum = '';
+			var secondNum = '';
+			var operation = '';
+			var boxOn=document.getElementById('first');
+
+			function addNum(number){
+				if(boxOn.id=='first'){
+					firstNum = firstNum + number;
+					boxOn.innerHTML = firstNum;
+				}
+				else{
+					secondNum = secondNum + number;
+					boxOn.innerHTML = secondNum;
+				}
+			}
+
+			function clearNums(){
+				firstNum = '';
+				secondNum = '';
+				operation = '';
+				document.getElementById('first').innerHTML = '';
+				document.getElementById('sec').innerHTML = '';
+				document.getElementById('opButton').innerHTML = '';
+				document.getElementById('answerButton').innerHTML = '';
+			}
+
+			function selectBox(box){
+				boxOn = document.getElementById(box);
+			}
+
+			function operationUpdate(opPassed){
+				operation = opPassed;
+				document.getElementById('opButton').innerHTML = operation;
+			}
+
+			function calculate(){
+				var numOne = parseInt(firstNum);
+				var numTwo = parseInt(secondNum);
+				var answer = 0;
+
+				if(operation=='+'){
+					answer = numOne + numTwo;
+				}
+				else if(operation=='-'){
+					answer = numOne - numTwo;
+				}
+				else if(operation=='*'){
+					answer = numOne * numTwo;
+				}
+				document.getElementById('answerButton').innerHTML = answer;
+			}
+
+		</script>
+	</body>
+</html>
